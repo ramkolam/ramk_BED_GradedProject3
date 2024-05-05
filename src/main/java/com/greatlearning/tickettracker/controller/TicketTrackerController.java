@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +33,7 @@ public class TicketTrackerController {
     public String searchTicket(@RequestParam(value = "searchText", required = false) String searchText, Model theModel) {
 
         List<Ticket> tickets = ticketTrackerService.list();
-        tickets = tickets.stream().filter(e->e.getShortDescription().toLowerCase().contains(searchText)||e.getTitle().toLowerCase().contains(searchText)).collect(Collectors.toList());
+        tickets = tickets.stream().filter(e -> e.getShortDescription().toLowerCase().contains(searchText) || e.getTitle().toLowerCase().contains(searchText)).collect(Collectors.toList());
 
         theModel.addAttribute("tickets", tickets);
 

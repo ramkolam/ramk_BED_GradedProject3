@@ -1,16 +1,16 @@
 package com.greatlearning.tickettracker.service;
 
-import java.util.List;
-
 import com.greatlearning.tickettracker.entity.Ticket;
+
+import java.util.List;
 
 public interface TicketTrackerService {
 
-	List<Ticket> list();
-	
-	public void save(Ticket ticket);
+    List<Ticket> list();
 
-	public Ticket findById(Long ticketId);
+    public void save(Ticket ticket);
 
-	public void deleteById(Long ticketId);
+    public Ticket findById(Long ticketId);
+
+    public void deleteById(Long ticketId);
 }
