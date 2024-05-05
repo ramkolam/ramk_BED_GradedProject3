@@ -47,6 +47,8 @@ public class TicketTrackerController {
         Ticket ticket = new Ticket();
 
         theModel.addAttribute("ticket", ticket);
+        theModel.addAttribute("readOnly", false);
+        theModel.addAttribute("title", "Create New Ticket");
 
         return "ticket-form";
     }
@@ -73,6 +75,8 @@ public class TicketTrackerController {
 
         // set Employee as a model attribute to pre-populate the form
         theModel.addAttribute("ticket", ticket);
+        theModel.addAttribute("readOnly", false);
+        theModel.addAttribute("title", "Edit Ticket");
 
         // send over to our form
         return "ticket-form";
@@ -88,6 +92,22 @@ public class TicketTrackerController {
 
         // redirect to tickets-Listing page
         return "redirect:/tickets";
+    }
+
+    @RequestMapping("/ticket/view")
+    public String view(
+            @RequestParam("ticketId") Long ticketId, Model theModel) {
+
+        // get the ticket from the service
+        Ticket ticket = ticketTrackerService.findById(ticketId);
+
+        // set Employee as a model attribute to pre-populate the form
+        theModel.addAttribute("ticket", ticket);
+        theModel.addAttribute("readOnly", true);
+        theModel.addAttribute("title", "View Ticket");
+
+        // send over to our form
+        return "ticket-form";
     }
 
 }
